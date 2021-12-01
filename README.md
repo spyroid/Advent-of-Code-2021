@@ -1,5 +1,3 @@
-# Advent of Code 2021
-
 ```kotlin
-fun main() {}
+fun adventOf(code: Year2021) {}
 ```
