@@ -12,4 +12,8 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
  */
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
-fun strToIntSeq(list: List<String>): Sequence<Int> = list.asSequence().map { it.toInt() }
+fun List<String>.toIntSeq(): Sequence<Int> {
+    return this.asSequence().map { it.toInt() }
+}
+
+fun readToIntSeq(name: String) = readInput(name).toIntSeq()
