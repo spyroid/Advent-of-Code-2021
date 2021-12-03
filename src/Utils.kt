@@ -17,3 +17,6 @@ fun List<String>.toIntSeq(): Sequence<Int> {
 }
 
 fun readToIntSeq(name: String) = readInput(name).toIntSeq()
+
+fun readInt(name: String) = readInput(name).map { it.toInt() }
+

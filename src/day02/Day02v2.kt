@@ -9,7 +9,6 @@ fun main() {
     open class Engine {
         var depth = 0
         var horizontal = 0
-        var aim = 0
 
         fun input(seq: Sequence<Command>): Engine {
             seq.forEach {
@@ -38,6 +37,8 @@ fun main() {
     }
 
     class EngineExt : Engine() {
+        var aim = 0
+
         override fun forward(value: Int) {
             horizontal += value
             depth += value * aim
