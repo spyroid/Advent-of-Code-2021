@@ -36,13 +36,8 @@ fun main() {
         return depth * horizontal
     }
 
-    fun mapCommand(str: String): Command {
-        val parts = str.split(" ")
-        return Command(parts[0], parts[1].toInt())
-    }
-
-    val testSeq = readInput("day02/test").asSequence().map { mapCommand(it) }
-    val seq = readInput("day02/input").asSequence().map { mapCommand(it) }
+    val testSeq = readInput("day02/test").asSequence().map { it.split(" ") }.map { Command(it[0], it[1].toInt()) }
+    val seq = readInput("day02/input").asSequence().map { it.split(" ") }.map { Command(it[0], it[1].toInt()) }
 
     val res1 = part1(testSeq)
     check(res1 == 150) { "Expected 150 but got $res1" }

@@ -11,7 +11,10 @@ enum class Type(val order: Int) {
 fun main() = runBlocking {
 
     fun part1(seq: List<String>): Int {
-        val counts = IntArray(seq.first().length) { idx -> if (seq.sumOf { (if (it[idx].digitToInt() == 0) -1L else 1L) } > 0) 1 else 0 }
+        val counts = IntArray(seq.first().length) {
+                idx -> if (seq.sumOf { (if (it[idx].digitToInt() == 0) -1L else 1L) } > 0) 1 else 0
+        }
+
         val gamma = counts.fold(0) { acc, el -> (acc shl 1) + el }
         val epsilon = counts.fold(0) { acc, el -> (acc shl 1) + el xor 1 }
         return gamma * epsilon
@@ -20,7 +23,11 @@ fun main() = runBlocking {
     suspend fun part2(seq: List<String>): Int {
 
         fun findMeasure(seq: List<String>, type: Type, idx: Int = 0): Int {
-            val group = seq.groupBy { it[idx].digitToInt() }.entries.sortedWith(compareBy({ it.value.size * -type.order }, { it.key * -type.order })).first().value
+            val group = seq.groupBy { it[idx].digitToInt() }
+                .entries
+                .sortedWith(compareBy({ it.value.size * -type.order }, { it.key * -type.order }))
+                .first().value
+
             if (group.size == 1) return group.first().toInt(2)
             return findMeasure(group, type, idx + 1)
         }
