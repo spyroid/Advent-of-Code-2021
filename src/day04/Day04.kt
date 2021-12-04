@@ -54,12 +54,11 @@ fun main() {
     fun part2(seq: List<String>): Int {
         val boards = getBoards(seq)
 
-        getInput(seq).forEach { marker ->
-            val res = boards.filter { it.score == 0 }.map { it.markAndGetScore(marker) }.minOf { it }
-            if (res > 0) return res
-        }
-        return 0
+        return getInput(seq).asSequence().map { marker ->
+            boards.filter { it.score == 0 }.map { it.markAndGetScore(marker) }.minOf { it }
+        }.first { it > 0 }
     }
+
 
     val testSeq = readInput("day04/test")
     val inputSeq = readInput("day04/input")
