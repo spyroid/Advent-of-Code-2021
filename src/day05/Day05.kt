@@ -35,11 +35,11 @@ fun main() {
 
     val res1 = part1(testSeq)
     check(res1 == 5) { "Expected 5 but got $res1" }
-    println("Part1: ${part1(inputSeq)}") // 6572
+    println("Part1: ${part1(inputSeq)}")
 
     val res2 = part2(testSeq)
     check(res2 == 12) { "Expected 12 but got $res2" }
-    println("Part2: ${part2(inputSeq)}") // 21466
+    println("Part2: ${part2(inputSeq)}")
 }
 
 private fun <String> Sequence<String>.toPoint(): Sequence<Pair<Point, Point>> {
