@@ -20,3 +20,7 @@ fun readToIntSeq(name: String) = readInput(name).toIntSeq()
 
 fun readInt(name: String) = readInput(name).map { it.toInt() }
 
+infix fun Int.toward(to: Int): IntProgression {
+    val step = if (this > to) -1 else 1
+    return IntProgression.fromClosedRange(this, to, step)
+}
