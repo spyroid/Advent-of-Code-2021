@@ -30,8 +30,8 @@ fun main() {
     fun part2(seq: Sequence<Pair<Point, Point>>) = overlaps(seq)
 
 
-    val testSeq = readInput("day05/test").asSequence().toPoint()
-    val inputSeq = readInput("day05/input").asSequence().toPoint()
+    val testSeq = readInput("day05/test").asSequence().map { toPairPoints(it) }
+    val inputSeq = readInput("day05/input").asSequence().map { toPairPoints(it) }
 
     val res1 = part1(testSeq)
     check(res1 == 5) { "Expected 5 but got $res1" }
@@ -42,12 +42,9 @@ fun main() {
     println("Part2: ${part2(inputSeq)}")
 }
 
-private fun <String> Sequence<String>.toPoint(): Sequence<Pair<Point, Point>> {
-    return this
-        .map { it.toString().split(" -> ") }
-        .map {
-            val p1 = it[0].split(",").map { s -> s.toInt() }
-            val p2 = it[1].split(",").map { s -> s.toInt() }
-            Pair(Point(p1[0], p1[1]), Point(p2[0], p2[1]))
-        }
+val regex = "(\\d+),(\\d+) -> (\\d+),(\\d+)".toRegex()
+
+fun toPairPoints(line: String): Pair<Point, Point> {
+    return regex.find(line)!!.groupValues.drop(1).map { it.toInt() }
+        .let { Pair(Point(it[0], it[1]), Point(it[2], it[3])) }
 }

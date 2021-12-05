@@ -25,7 +25,7 @@ fun main() {
             if (score != 0) return score
             var sumOfUnmarked = 0
             var fullRow = false
-            cells.forEachIndexed { row, cells2 ->
+            cells.forEachIndexed { _, cells2 ->
                 val countRow = cells2.onEachIndexed { col, cell ->
                     if (cell.value == marker) {
                         cell.marked = true
