@@ -16,6 +16,8 @@ fun List<String>.toIntSeq(): Sequence<Int> {
     return this.asSequence().map { it.toInt() }
 }
 
+fun readIntsAsSeq(name: String): Sequence<Int> = readInput(name).joinToString().split(",").map { it.toInt() }.asSequence()
+
 fun readToIntSeq(name: String) = readInput(name).toIntSeq()
 
 fun readInt(name: String) = readInput(name).map { it.toInt() }
