@@ -1,11 +1,10 @@
 package day07
 
-import kotlinx.coroutines.runBlocking
 import readIntsAsSeq
 import kotlin.math.abs
 import kotlin.system.measureTimeMillis
 
-fun main() = runBlocking {
+fun main() {
 
     fun part1And2(seq: Sequence<Int>, expensiveFuel: Boolean = false): Int {
         return seq
@@ -26,8 +25,10 @@ fun main() = runBlocking {
 
     var res1 = part1And2(testSeq)
     check(res1 == 37) { "Expected 37 but got $res1" }
+
     var time = measureTimeMillis { res1 = part1And2(inputSeq) }
     println("Part1: $res1 in $time ms")
+
     time = measureTimeMillis { res1 = part1And2(inputSeq, true) }
-    println("Part1: $res1 in $time ms")
+    println("Part2: $res1 in $time ms")
 }
