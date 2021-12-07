@@ -6,11 +6,15 @@ import kotlin.math.abs
 fun main() {
 
     fun part1And2(seq: Sequence<Int>, expensiveFuel: Boolean = false): Int {
-        return seq.sorted().let { (it.first()..it.last()) }
+        return seq
+            .sorted()
+            .let { (it.first()..it.last()) }
             .map { pos ->
-                seq.sumOf { current ->
-                    if (expensiveFuel) (abs(current - pos) * (abs(current - pos) + 1)) / 2 else abs(current - pos)
-                }
+                seq
+                    .map { abs(it - pos) }
+                    .sumOf { current ->
+                        if (expensiveFuel) (current * (current + 1)) / 2 else current
+                    }
             }
             .minOf { it }
     }
