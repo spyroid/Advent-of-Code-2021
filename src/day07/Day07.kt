@@ -13,8 +13,8 @@ fun main() {
             .map { pos ->
                 seq
                     .map { abs(it - pos) }
-                    .sumOf { current ->
-                        if (expensiveFuel) (current * (current + 1)) / 2 else current
+                    .sumOf { v ->
+                        if (expensiveFuel) (v * (v + 1)) / 2 else v
                     }
             }
             .minOf { it }
