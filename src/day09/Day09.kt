@@ -31,12 +31,13 @@ fun main() {
             .take(count)
             .fold(1) { acc, i -> acc * i }
 
-        private fun deeper(p: Point, basin: MutableSet<Point>) {
-            basin.add(p)
-            neighbors(p.x, p.y).filter { n -> p.v < n.v && n.v < 9 }.forEach { deeper(it, basin) }
+        private fun findBasin(p: Point): MutableSet<Point> {
+            fun deeper(p: Point, basin: MutableSet<Point>) {
+                basin.add(p)
+                neighbors(p.x, p.y).filter { n -> p.v < n.v && n.v < 9 }.forEach { deeper(it, basin) }
+            }
+            return mutableSetOf<Point>().apply { deeper(p, this) }
         }
-
-        private fun findBasin(p: Point) = mutableSetOf(p).apply { deeper(p, this) }
     }
 
     fun part1(input: List<String>) = Area(input).lowestPoints().sumOf { it.v + 1 }
