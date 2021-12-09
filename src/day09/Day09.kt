@@ -13,11 +13,7 @@ fun main() {
         val areaWidth = input.first().length
 
         fun readPoints(seq: List<String>) = mutableListOf<Point>().apply {
-            seq.forEachIndexed { y, line ->
-                line.forEachIndexed { x, v ->
-                    this += Point(x, y, v.digitToInt())
-                }
-            }
+            seq.forEachIndexed { y, line -> line.forEachIndexed { x, v -> this += Point(x, y, v.digitToInt()) } }
         }
 
         fun at(x: Int, y: Int): Point? {
@@ -40,17 +36,14 @@ fun main() {
             neighbors(p.x, p.y).filter { n -> p.v < n.v && n.v < 9 }.forEach { deeper(it, basin) }
         }
 
-        private fun findBasin(p: Point): MutableSet<Point> {
-            val basin = mutableSetOf(p)
-            deeper(p, basin)
-            return basin
-        }
+        private fun findBasin(p: Point) = mutableSetOf(p).apply { deeper(p, this) }
     }
 
     fun part1(input: List<String>) = Area(input).lowestPoints().sumOf { it.v + 1 }
 
     fun part2(input: List<String>) = Area(input).basinsMaxSizes(3)
 
+    /* init */
 
     val testData = readInput("day09/test")
     val inputData = readInput("day09/input")
