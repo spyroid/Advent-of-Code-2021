@@ -24,15 +24,11 @@ fun main() {
 
     fun part2(input: List<String>) = input.map { validate(it) }.filter { it > 0 }.sorted().let { it[it.size / 2] }
 
-    fun parts12(input: List<String>): Pair<Long, Long> {
-        return input
-            .map { validate(it) }
-            .groupBy { it < 0 }
-            .values
-            .zipWithNext()
-            .first()
-            .let { pair -> Pair(pair.first.sumOf { it }.absoluteValue, pair.second.sorted().let { list -> list[list.size / 2] }) }
-    }
+    fun parts12(input: List<String>) = input
+        .map { validate(it) }
+        .groupBy { it < 0 }
+        .let { g -> Pair(g[true]!!.sumOf { it }.absoluteValue, g[false]!!.sorted().let { list -> list[list.size / 2] }) }
+
 
     val testData = readInput("day10/test")
     val inputData = readInput("day10/input")
