@@ -74,12 +74,15 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val area = Area(input)
-        return repeat(100) { area.oneStep() }.let { area.totalFlashes }
+        return repeat(100) { area.oneStep() }
+            .let { area.totalFlashes }
     }
 
     fun part2(input: List<String>): Int {
         val area = Area(input)
-        return generateSequence(1) { it + 1 }.onEach { area.oneStep() }.first { area.allFlashing() }
+        return generateSequence(1) { it + 1 }
+            .onEach { area.oneStep() }
+            .first { area.allFlashing() }
     }
 
 
