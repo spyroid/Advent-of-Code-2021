@@ -47,27 +47,25 @@ fun main() {
             var zeroes = mutableSetOf<Point>()
             val excludes = mutableSetOf<Point>()
 
-            for (p in points) {
-                if (p.inc() == 0) {
-                    excludes.add(p)
-                    zeroes.add(p)
-                    totalFlashes++
-                }
+            points.filter { it.inc() == 0 }.forEach {
+                excludes.add(it)
+                zeroes.add(it)
+                totalFlashes++
             }
 
             while (zeroes.isNotEmpty()) {
-                val zz = mutableSetOf<Point>()
-                for (z in zeroes) {
-                    for (z1 in neighbors(z.x, z.y)) {
-                        if (z1.v == 0 && z1 in excludes) continue
-                        if (z1.inc() == 0) {
-                            excludes.add(z1)
-                            zz.add(z1)
-                            totalFlashes++
-                        }
+                zeroes = mutableSetOf<Point>().apply {
+                    zeroes.forEach { z ->
+                        neighbors(z.x, z.y)
+                            .filterNot { it.v == 0 && it in excludes }
+                            .filter { it.inc() == 0 }
+                            .forEach {
+                                excludes.add(it)
+                                add(it)
+                                totalFlashes++
+                            }
                     }
                 }
-                zeroes = zz
             }
         }
 
