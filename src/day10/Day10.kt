@@ -30,6 +30,7 @@ fun main() {
         .let { g -> Pair(g[true]!!.sumOf { it }.absoluteValue, g[false]!!.sorted().let { list -> list[list.size / 2] }) }
 
 
+
     val testData = readInput("day10/test")
     val inputData = readInput("day10/input")
 
