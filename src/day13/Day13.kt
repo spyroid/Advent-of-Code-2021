@@ -39,10 +39,8 @@ fun main() {
         }
 
         override fun toString() = buildString {
-            val xx = points.maxOf { it.x }
-            val yy = points.maxOf { it.y }
-            for (y in 0..yy) {
-                for (x in 0..xx) {
+            for (y in 0..points.maxOf { it.y }) {
+                for (x in 0..points.maxOf { it.x }) {
                     if (Point(x, y) in points) append("#") else append(" ")
                 }
                 appendLine()
