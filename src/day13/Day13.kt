@@ -70,11 +70,11 @@ fun main() {
     check(res1 == 17) { "Expected 17 but got $res1" }
 
     var time = measureTimeMillis { res1 = part1(inputData) }
-    term.success("Part1: $res1 in $time ms")
+    term.success("⭐️ Part1: $res1 in $time ms")
 
     var res2: String
     time = measureTimeMillis { res2 = part2(inputData) }
-    term.success("Part2: in $time ms\n\n\n\n\n")
+    term.success("⭐️ Part2: in $time ms\n\n\n\n\n")
     res2.split("\n").forEach {
         val c = term.colors.hsl(Random.nextInt(0, 25) * 10, 100, 60)
         term.println("\t\t" + c(it))
