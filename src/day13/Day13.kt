@@ -63,7 +63,6 @@ fun main() {
         return 0
     }
 
-
     val testData = readInput("day13/test")
     val inputData = readInput("day13/input")
 
