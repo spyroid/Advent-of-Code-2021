@@ -18,8 +18,7 @@ fun main() {
                     val s = line.split(" ").last().split("=")
                     if (s[0] == "x") folds.add(Point(s[1].toInt(), 0)) else folds.add(Point(0, s[1].toInt()))
                 } else {
-                    val (x, y) = line.split(",").map { it.toInt() }
-                    points.add(Point(x, y))
+                    line.split(",").map { it.toInt() }.let { points.add(Point(it[0], it[1])) }
                 }
             }
         }
