@@ -26,12 +26,12 @@ fun main() {
             return generateSequence(pairCounts) { getNewCounts(it) }
                 .drop(iterations)
                 .first()
-                .let { getLetterCounts(it) }
+                .let { countLetters(it) }
                 .values
                 .sortedBy { it }.let { it.last() - it.first() }
         }
 
-        private fun getLetterCounts(pairCounts: Map<String, Long>): Map<Char, Long> {
+        private fun countLetters(pairCounts: Map<String, Long>): Map<Char, Long> {
             val letterCounts = mutableMapOf<Char, Long>().apply {
                 pairCounts.entries.forEach { (key, value) ->
                     this[key.first()] = getOrDefault(key.first(), 0) + value
