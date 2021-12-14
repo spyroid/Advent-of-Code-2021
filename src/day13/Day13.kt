@@ -76,7 +76,7 @@ fun main() {
     time = measureTimeMillis { res2 = part2(inputData) }
     term.success("⭐️ Part2: in $time ms\n\n\n\n\n")
     res2.split("\n").forEach {
-        val c = term.colors.hsl(Random.nextInt(0, 25) * 10, 100, 60)
+        val c = term.colors.hsl(Random.nextInt(0, 25) * 10, 1_00, 60)
         term.println("\t\t" + c(it))
     }.let { println("\n\n") }
 }
