@@ -46,7 +46,6 @@ fun main() {
             }
         }
 
-
         private fun getNewCounts(pairCounts: Map<String, Long>): Map<String, Long> {
             return mutableMapOf<String, Long>().apply {
                 pairCounts.forEach { pair ->
