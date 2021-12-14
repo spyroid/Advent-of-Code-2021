@@ -7,7 +7,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
 
     class Polymer(input: List<String>) {
-        var seq = input.first().asSequence().toList()
+        var template = input.first()
 
         val pairCounts = input.first().asSequence()
             .windowed(2)
@@ -40,7 +40,7 @@ fun main() {
             }
             return letterCounts.entries.associate { (key, value) ->
                 when (key) {
-                    seq.first(), seq.last() -> key to (value + 1) / 2
+                    template.first(), template.last() -> key to (value + 1) / 2
                     else -> key to value / 2
                 }
             }
