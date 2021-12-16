@@ -75,10 +75,6 @@ class Decoder(input: String) {
         }
         return Pair(packet, local)
     }
-
-    override fun toString(): String {
-        return binData
-    }
 }
 
 fun main() {
