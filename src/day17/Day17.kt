@@ -49,8 +49,11 @@ fun main() {
     check(res.first == 45) { "Expected 45 but got ${res.first}" }
     check(res.second == 112) { "Expected 112 but got ${res.second}" }
 
-    val time = measureTimeMillis { res = Simulation(48, 70, -189, -148).find() }
-    println("⭐️ Part1: ${res.first} in $time ms")
-    println("⭐️ Part2: ${res.second} in $time ms")
+    measureTimeMillis {
+        res = Simulation(48, 70, -189, -148).find()
+    }.also { time ->
+        println("⭐️ Part1: ${res.first} in $time ms")
+        println("⭐️ Part2: ${res.second} in $time ms")
+    }
 }
 
