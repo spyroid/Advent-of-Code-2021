@@ -3,26 +3,25 @@ package day17
 import kotlin.math.absoluteValue
 import kotlin.system.measureTimeMillis
 
-data class Bullet(var dx: Int, var dy: Int, var x: Int = 0, var y: Int = 0) {
-    var maxY = y
-    fun step() {
-        x += dx
-        y += dy--
-        if (dx > 0) dx -= 1 else dx = 0
-        maxY = maxOf(maxY, y)
-    }
-}
-
 
 class Simulation(val x1: Int, val x2: Int, val y1: Int, val y2: Int) {
+
+    data class Bullet(var dx: Int, var dy: Int, var x: Int = 0, var y: Int = 0) {
+        var maxY = y
+
+        fun step() {
+            x += dx
+            y += dy--
+            if (dx > 0) dx -= 1 else dx = 0
+            maxY = maxOf(maxY, y)
+        }
+    }
 
     private fun simulate(x: Int, y: Int): Bullet? {
         val b = Bullet(x, y)
         while (b.y >= y1 && b.x <= x2) {
             b.step()
-            if (b.x in x1..x2 && b.y in y1..y2) {
-                return b
-            }
+            if (b.x in x1..x2 && b.y in y1..y2) return b
         }
         return null
     }
