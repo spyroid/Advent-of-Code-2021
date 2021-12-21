@@ -1,16 +1,15 @@
-package day18
+package day21
 
 import readInput
 import kotlin.system.measureTimeMillis
-
 
 fun part1(input: List<String>) = input.size
 fun part2(input: List<String>) = input.size
 
 fun main() {
 
-    val testData = readInput("day18/test")
-    val inputData = readInput("day18/input")
+    val testData = readInput("day21/test")
+    val inputData = readInput("day21/input")
 
     check(part1(testData) == 0)
 
