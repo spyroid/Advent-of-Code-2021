@@ -10,7 +10,7 @@ data class Area(val input: List<String>) {
 
     data class Herd(val x: Int, val y: Int, val isHor: Boolean)
 
-    private var herds = buildSet {
+    private var herds = buildList {
         input.forEachIndexed { y, line ->
             line.forEachIndexed { x, c -> if (c != '.') add(Herd(x, y, c == '>')) }
         }
@@ -31,7 +31,7 @@ data class Area(val input: List<String>) {
 
     private fun step12(isHor: Boolean): Int {
         var changes = 0
-        herds = buildSet {
+        herds = buildList {
             herds.forEach { herd ->
                 if (herd.isHor == isHor) {
                     val (newHerd, c) = move(herd)
