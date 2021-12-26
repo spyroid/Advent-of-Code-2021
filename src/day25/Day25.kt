@@ -29,33 +29,23 @@ data class Area(val input: List<String>) {
         return Pair(Herd(herd.x, herd.y, herd.isHor), 0)
     }
 
-    fun step(): Int {
+    private fun step12(isHor: Boolean): Int {
         var changes = 0
         herds = buildSet {
             herds.forEach { herd ->
-                if (herd.isHor) {
+                if (herd.isHor == isHor) {
                     val (newHerd, c) = move(herd)
                     changes += c
                     add(newHerd)
                 } else {
                     add(herd)
-                }
-            }
-        }
-
-        herds = buildSet {
-            herds.forEach { herd ->
-                if (herd.isHor) {
-                    add(herd)
-                } else {
-                    val (newHerd, c) = move(herd)
-                    changes += c
-                    add(newHerd)
                 }
             }
         }
         return changes
     }
+
+    fun step() = step12(true) + step12(false)
 
     override fun toString() = buildString {
         for (y in 0 until height) {
@@ -74,14 +64,7 @@ data class Area(val input: List<String>) {
 
 fun part1(input: List<String>): Int {
     val area = Area(input)
-    var cc = generateSequence(2) { it + 1 }.takeWhile { area.step() != 0 }.last()
-    var count = 0
-//    while (true) {
-//        count += 1
-//        if (area.step() == 0) break
-//    }
-    println(cc)
-    return cc
+    return generateSequence(2) { it + 1 }.takeWhile { area.step() != 0 }.last()
 }
 
 fun main() {
