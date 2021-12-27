@@ -18,11 +18,9 @@ fun main() {
 
         for (y in 0 until height) for (x in 0 until width) {
             if (area[y][x] != ch) continue
-
             val xx = (x + dx) % width
             val yy = (y + dy) % height
-            val cc = area[yy][xx]
-            if (cc == '.') {
+            if (area[yy][xx] == '.') {
                 area1[yy][xx] = ch
                 area1[y][x] = '.'
                 moved = true
