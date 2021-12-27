@@ -7,16 +7,14 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
 
-    val input = readInput("day25/test3")
+    val input = readInput("day25/input")
     val height = input.size
     val width = input.first().length
-    var area = Array(height) { Array(width) { '.' } }
-    input.forEachIndexed { y, line -> line.forEachIndexed { x, c -> area[y][x] = c } }
+    var area = Array(height) { y -> Array(width) { x -> input[y][x] } }
 
     fun move(ch: Char, dx: Int, dy: Int): Boolean {
         var moved = false
-        val area1 = Array(height) { Array(width) { '.' } }
-        for (y in 0 until height) for (x in 0 until width) area1[y][x] = area[y][x]
+        val area1 = Array(height) { y -> Array(width) { x -> area[y][x] } }
 
         for (y in 0 until height) for (x in 0 until width) {
             if (area[y][x] != ch) continue
@@ -50,12 +48,12 @@ fun main() {
 
     var count = 0
     measureTimeMillis {
-        printArea().also { println() }
+//        printArea().also { println() }
         do {
             count++
             val r1 = move('>', 1, 0)
             val r2 = move('v', 0, 1)
         } while (r1 || r2)
-        printArea()
+//        printArea()
     }.also { println("⭐️ Part1: $count in $it ms") }
 }
