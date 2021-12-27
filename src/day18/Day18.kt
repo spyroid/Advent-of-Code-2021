@@ -25,7 +25,27 @@ fun parseLine(line: String): Node {
     return parse()
 }
 
+fun find(root: Node?, limit: Int): Node? {
+    if (limit == 0 || root == null) return root
+    val l = find(root.left, limit - 1)
+    if (l != null) return l
+    val r = find(root.right, limit - 1)
+    if (r != null) return r
+    return null
+}
+
+fun reduce(root: Node): Node {
+
+    val four = find(root, 3)
+
+    return root
+}
+
 fun main() {
+
+    val n = parseLine("[[[[[9,8],1],2],3],4]")
+    val n2 = find(n, 4)
+
     val input = readInput("day18/test")
 
     var root: Node? = null
@@ -35,6 +55,7 @@ fun main() {
             continue
         }
         root = Node(null, root, parseLine(line))
+        root = reduce(root)
 
 
     }
