@@ -5,6 +5,9 @@ import readInput
 import kotlin.math.floor
 import kotlin.system.measureTimeMillis
 
+// Some thoughts about that
+// https://docs.google.com/spreadsheets/d/1eSizAHZFgb7XiQsDK7oG2U-f8c0M01F-c8K9nf68akg/edit?usp=sharing
+
 fun calc(ww: Int, zz: Int = 0, p1: Int = 0, p2: Int = 0, p3: Int = 0): Int {
 //    var z = zz
     //    var y = 0
