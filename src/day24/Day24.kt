@@ -14,7 +14,7 @@ fun calc(ww: Int, zz: Int = 0, p1: Int = 0, p2: Int = 0, p3: Int = 0): Int {
 //    var x = 0 // mul x 0
 //    var x = zz
     var x = (zz % 26) + p2 // param
-    var z = floor(zz.toDouble() / p1).toInt() // param
+    var z = zz / p1 // param
 //    x += 10 // param
     x = if (x == ww) 1 else 0
     x = if (x == 0) 1 else 0
