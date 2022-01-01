@@ -13,29 +13,45 @@ fun calc(ww: Int, zz: Int = 0, p1: Int = 0, p2: Int = 0, p3: Int = 0): Int {
     //    var y = 0
 //    var x = 0 // mul x 0
 //    var x = zz
-    var x = (zz % 26) + p2 // param
+//    var x = (zz % 26) + p2 // param
     var z = zz / p1 // param
 //    x += 10 // param
-    x = if (x == ww) 1 else 0
-    x = if (x == 0) 1 else 0
+//    x = if (x == ww) 1 else 0
+//    x = if (x == 0) 1 else 0
+    val x = if ((zz % 26) + p2 == ww) 0 else 1
 //    var y = 0
-    var y = 25 + x + 1
+    val y = 26 + x
 //    y += x
 //    y += 1
     z = z * y
-    y = (ww + p3) * x
+//    y = (ww + p3) * x
 //    y += w
 //    y += 2 // param
 //    y *= x
-    z = z + y
+    z = z + ((ww + p3) * x)
 //    println("w=$ww x=$x y=$y z=$z")
     return z
 }
 
+fun calc1(ww: Int, zz: Int = 0, p1: Int = 0, p2: Int = 0, p3: Int = 0) {
+    var z = 0 // param
+    val x = 1//if ((zz % 26) + 10 == ww) 0 else 1
+//    val y = 26 + 1
+//    z = z * y
+    z = ww + 2
+}
 
-val p1 = intArrayOf(1, 1, 1, 1, 26, 1, 26, 26, 1, 26, 1, 26, 26, 26)
+fun calc5(ww: Int, zz: Int = 0, p1: Int = 0, p2: Int = 0, p3: Int = 0) {
+    var z = zz / 26 // param
+    val x = if ((zz % 26) - 8 == ww) 0 else 1
+    val y = 26 + x
+    z = z * y
+    z = z + ((ww + 1) * x)
+}
+
+val p1 = intArrayOf( 1,  1,  1,  1, 26,  1, 26, 26, 1, 26, 1, 26, 26, 26)
 val p2 = intArrayOf(10, 15, 14, 15, -8, 10, -16, -4, 11, -3, 12, -7, -15, -7)
-val p3 = intArrayOf(2, 16, 9, 0, 1, 12, 6, 6, 3, 5, 9, 3, 2, 3)
+val p3 = intArrayOf( 2, 16,  9,  0,  1, 12, 6, 6, 3, 5, 9, 3, 2, 3)
 
 fun backwards(i: Int, zz: Int, skip: Set<Int>): Pair<Int, Int> {
     for (w in 9 downTo 1) for (z in 26 downTo 1) {
